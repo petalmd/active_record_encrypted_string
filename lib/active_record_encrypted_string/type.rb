@@ -36,7 +36,8 @@ module ActiveRecordEncryptedString
 
     def encryptor
       # TODO: rotate
-      ActiveSupport::MessageEncryptor.new(secret, cipher: ActiveRecordEncryptedString.configuration.cipher_alg)
+      @encryptor ||=
+        ActiveSupport::MessageEncryptor.new(secret, cipher: ActiveRecordEncryptedString.configuration.cipher_alg)
     end
 
     def secret
